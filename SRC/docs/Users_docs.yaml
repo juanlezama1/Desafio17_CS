@@ -1,0 +1,63 @@
+paths:
+  /users:
+    get:
+      summary: Devuelve un arreglo con todos los usuarios que hay
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Usuarios obtenidos satisfactoriamente de la base de datos
+        "500":
+          description: Error al obtener los usuarios de la base de datos
+  
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string #Object ID no es aceptado
+          description: ID autogenerado por MongoDB
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        age:
+          type: number
+          description: Edad del usuario
+        email:
+          type: string
+          description: Correo electrónico
+        password:
+          type: string
+          description: Contraseña (encriptada)
+        category:
+          type: string
+          description: Categoría del usuario
+          enum:
+            - Standard_User
+            - Admin
+            - Premium
+        cartID:
+          type: string
+          description: ID correspondiente del carrito asociado al usuario
+      
+      example:
+        _id: 66358669b1fcb1620b8ba1b3
+        first_name: Carmen
+        last_name: Terraza
+        age: 48
+        email: carmenterraza@gmail.com
+        password: $2b$12$9JXzXHPsrwm3U2CJinqITOsdL/CGCbfEq2.GUo1KEQ9R.AE7PB67G
+        category: Admin
+        cartID: 662435c16fc64657d2c4bf4b
+        
+        
+
+
+
+
+
+    
