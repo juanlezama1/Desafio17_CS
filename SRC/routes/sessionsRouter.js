@@ -27,8 +27,8 @@ sessionsRouter.post('/login', passport.authenticate('login'), async (req, res) =
             email: req.user.email
         }
 
-        // Si llegó a esta altura, se logueó correctamente, lo envío a la página principal
-        res.redirect('/')
+        // Si llegó a esta altura, se logueó correctamente.
+        res.status(200).send("Logueado correctamente!")
     }
 
     catch (error)
@@ -80,7 +80,7 @@ sessionsRouter.get('/logout', async (req, res) => {
         req.session.destroy()
 
         // Usuario finalizó su sesión, lo envío a la página principal
-        res.redirect('/')
+        res.status(200).send("Sesión finalizada con éxito!")
     }
 
     catch (error)
@@ -134,8 +134,8 @@ sessionsRouter.get('/testJWT', passport.authenticate('jwt', {session: false}), (
 })
 
 sessionsRouter.get('/current', async (req, res) => {
-    res.status(200).send(req.session.user)
 
+    req.session.user? res.status(200).send(req.session.user): res.status(400).send("Usuario sin loguear")
 })
 
 sessionsRouter.post('/resetPSW', async (req, res) => {
@@ -155,7 +155,6 @@ sessionsRouter.post('/resetPSW', async (req, res) => {
         res.status(400).send("Error al enviar el correo de recuperación - Usuario no existente!")
     }
 })
-
 
 // Entrás por GET cuando apretás el link de recuperación en el email
 

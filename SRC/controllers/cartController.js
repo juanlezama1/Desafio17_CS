@@ -22,7 +22,7 @@ const cartCheckout = async (cart_id, user_email) => {
     // Descuento el stock y calculo el costo total
 
     let totalAmount = 0
-
+ 
     for (let product of my_cart.products)
     
     {

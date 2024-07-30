@@ -70,8 +70,9 @@ cartsRouter.put('/:cid', async (req, res) => {
 
     // Busco por ID, lo actualizo y devuelvo el carrito actualizado
     try {
-        let my_cart = await cartModel.findByIdAndUpdate(cart_code, updated_cart, {new: 'true'}).populate('products.id_prod').lean()
-        res.status(200).render('templates/home_cart_id', {title: 'Carrito Actualizado', subtitle: 'Detalle de productos:', cart: my_cart.products})
+
+        await cartModel.findByIdAndUpdate(cart_code, updated_cart, {new: 'true'})
+        res.status(200).send("Carrito actualizado con éxito!")
     }
 
     catch (error)
@@ -145,8 +146,7 @@ cartsRouter.delete('/:cid/', async (req, res) => {
 
     try {
         // Actualizo el carrito vaciando el array de productos
-        await cartModel.findByIdAndUpdate(cart_code, {products: []}).lean()
-
+        await cartModel.findByIdAndUpdate(cart_code, {products: []})
         res.status(200).send('Carrito vaciado con éxito!')
     }
 

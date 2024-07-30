@@ -41,12 +41,13 @@ describe("Pruebas en el módulo de Carritos", function() {
     it ("Corroboro que puedo vaciar el contenido de un carrito", async () => {
         let result = await URL_carts.delete(`/${randomCart._id}`)
         expect (result.statusCode).to.be.equal(200)
+        expect('1').to.be.ok
     })
 
     // Test 4
     it ("Corroboro que puedo actualizar el contenido de un carrito", async () => {
 
         let result = await URL_carts.put(`/${randomCart._id}`).send({products: randomCart.products})
-        expect(result).to.be.equal(200)
+        expect(result.statusCode).to.be.equal(200)
     })
 })
