@@ -135,7 +135,7 @@ productsRouter.post('/', async (req, res) => {
 
     try {
         const my_product = await createProduct (new_product)
-        res.status(200).render('templates/home_id', {title: 'Producto Creado:', product: my_product})
+        res.status(200).send(my_product)
     }
 
     catch (error)

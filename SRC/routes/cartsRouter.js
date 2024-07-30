@@ -1,8 +1,22 @@
 import { Router } from "express"
 import { cartModel } from "../models/carts.js"
-import cartCheckout from "../controllers/cartController.js"
+import {cartCheckout, getCarts} from "../controllers/cartController.js"
 
 const cartsRouter = Router ()
+
+// LECTURA DE TODOS LOS CARRITOS
+cartsRouter.get('/', async (req, res) => {
+
+    try {
+        const my_carts = await getCarts()
+        res.status(200).send(my_carts)
+    }
+
+    catch (error) {
+        res.status(500).send("Error al obtener los carritos de la DB")
+        req.logger.error("Error al obtener los carritos de la DB")
+    }
+})
 
 // LECTURA DE UN CARRITO ESPECÍFICO
 cartsRouter.get('/:cid', async (req, res) => {
@@ -11,8 +25,8 @@ cartsRouter.get('/:cid', async (req, res) => {
 
     // Intento obtenerlo de la DB
     try {
-        let my_cart = await cartModel.findById(cart_code).populate('products.id_prod').lean()
-        res.status(200).render('templates/home_cart_id', {title: 'Carrito Seleccionado', subtitle: 'Detalle de productos:', cart: my_cart.products})
+        let my_cart = await cartModel.findById(cart_code).lean()
+        res.status(200).send(my_cart)
     }
 
     catch (error)
@@ -47,7 +61,6 @@ cartsRouter.get('/:cid/purchase', async (req, res) => {
         req.logger.error("Error al generar el carrito: ", error)
     }
 })
-
 
 // UPDATE DE UN CARRITO ESPECÍFICO
 cartsRouter.put('/:cid', async (req, res) => {

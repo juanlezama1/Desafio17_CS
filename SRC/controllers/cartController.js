@@ -38,4 +38,9 @@ const cartCheckout = async (cart_id, user_email) => {
     return true // Ticket generado con éxito
 }
 
-export default cartCheckout
+const getCarts = async () =>  {
+    const my_carts = await cartModel.find()
+    return my_carts
+}
+
+export {cartCheckout, getCarts}

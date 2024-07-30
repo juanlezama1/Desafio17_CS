@@ -2,14 +2,16 @@
   "type": "module",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
+    "chai": "^5.1.1",
     "mocha": "^10.7.0",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "supertest": "^7.0.0"
   },
   "scripts": {
     "devNodemon": "nodemon ./SRC/app.js",
-    "testChildProducts": "mocha ./Tests/Products.test.js",
-    "testChildUsers": "mocha ./Tests/Users.test.js",
-    "testChildSessions": "mocha ./Tests/Sessions.test.js"
+    "testProducts": "mocha ./Tests/Products.test.js",
+    "testCarts": "mocha ./Tests/Carts.test.js",
+    "testSessions": "mocha ./Tests/Sessions.test.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

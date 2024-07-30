@@ -68,6 +68,5 @@ const my_server = my_app.listen(PORT, () => {
     logger.info(`Escuchando solicitudes en el puerto ${PORT} ...`)
 })
 
-
 // Aclaración: Ya dejé la DB cargada con 10 productos, 4 usuarios y 3 carritos de antemano
 // Dejo comentado el código adjunto donde se cargaron los productos/carritos/usuarios para evitar que se carguen de nuevo
